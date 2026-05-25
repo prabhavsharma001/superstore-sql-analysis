@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopEase SQL Assignment — All 23 Questions</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #f9fafb;
+      --surface:     #ffffff;
+      --border:      #e5e7eb;
+      --border-soft: #f0f1f3;
+      --text:        #111827;
+      --text-muted:  #6b7280;
+      --accent:      #2563eb;
+      --accent-bg:   #eff6ff;
+      --success-bg:  #f0fdf4;
+      --success-fg:  #15803d;
+      --warn-bg:     #fffbeb;
+      --warn-fg:     #b45309;
+      --code-bg:     #f3f4f6;
+      --font-sans:   -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono:   'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      --radius:      10px;
+      --radius-sm:   6px;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .header h1 {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .header p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .badge {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--accent-bg);
+      color: var(--accent);
+    }
+
+    /* ── Toolbar ── */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .tab {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      background: var(--surface);
+      transition: all .15s;
+    }
+    .tab:hover:not(.active) { background: var(--bg); }
+    .tab.active {
+      background: var(--accent-bg);
+      color: var(--accent);
+      border-color: transparent;
+    }
+    .expand-btn {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--accent);
+      cursor: pointer;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 5px 12px;
+      transition: background .15s;
+    }
+    .expand-btn:hover { background: var(--accent-bg); }
+
+    /* ── Section ── */
+    .section { display: none; margin-bottom: 2rem; }
+    .section.visible { display: block; }
+    .section-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--text-muted);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+
+    /* ── Question card ── */
+    .q-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 8px;
+      overflow: hidden;
+      transition: box-shadow .15s;
+    }
+    .q-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,.07); }
+
+    .q-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 13px 16px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .q-header:hover { background: var(--bg); }
+
+    .q-num {
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--accent-bg);
+      color: var(--accent);
+      padding: 2px 8px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .q-text {
+      font-size: 13.5px;
+      color: var(--text);
+      line-height: 1.5;
+      flex: 1;
+    }
+    .q-arrow {
+      font-size: 16px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: transform .2s;
+      margin-top: 1px;
+    }
+    .q-arrow.open { transform: rotate(90deg); }
+
+    /* ── Body ── */
+    .q-body { display: none; padding: 0 16px 16px; }
+    .q-body.open { display: block; }
+
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      line-height: 1.65;
+      overflow-x: auto;
+      color: var(--text);
+      white-space: pre;
+    }
+
+    /* SQL syntax */
+    .kw  { color: #1d4ed8; font-weight: 600; }
+    .str { color: #15803d; }
+    .num { color: #b45309; }
+    .cmt { color: #9ca3af; font-style: italic; }
+
+    .explain {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-top: 10px;
+    }
+    .explain strong { color: var(--text); font-weight: 600; }
+    .explain code {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      background: var(--code-bg);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    .tags { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 11px;
+      padding: 2px 9px;
+      border-radius: 20px;
+    }
+    .tag-green { background: var(--success-bg); color: var(--success-fg); }
+    .tag-amber { background: var(--warn-bg);    color: var(--warn-fg); }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>ShopEase SQL Assignment</h1>
+    <p>All 23 questions answered — click any card to expand the query and explanation</p>
+    <div class="badges">
+      <span class="badge">Section A — SQL Basics (Q1–Q6)</span>
+      <span class="badge">Section B — Filtering (Q7–Q12)</span>
+      <span class="badge">Section C — Aggregation (Q13–Q18)</span>
+      <span class="badge">Section D — Joins (Q19–Q23)</span>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <button class="tab active" onclick="showSec('all',this)">All sections</button>
+    <button class="tab" onclick="showSec('a',this)">A — SQL Basics</button>
+    <button class="tab" onclick="showSec('b',this)">B — Filtering</button>
+    <button class="tab" onclick="showSec('c',this)">C — Aggregation</button>
+    <button class="tab" onclick="showSec('d',this)">D — Joins</button>
+    <button class="expand-btn" onclick="toggleAll()">Expand all ↓</button>
+  </div>
+
+  <!-- ══════════════ SECTION A ══════════════ -->
+  <div class="section visible" data-sec="a">
+    <div class="section-title">Section A — SQL Basics (Q1–Q6)</div>
+
+    <!-- Q1 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q1</span>
+        <span class="q-text">Display all columns and rows from the customers table</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="kw">SELECT</span> *
+<span class="kw">FROM</span>   customers;</pre>
+        <p class="explain"><strong>What's happening:</strong> <code>SELECT *</code> grabs every column. <code>FROM customers</code> points to the table. The asterisk (*) is a wildcard for "give me everything". In production you'd usually name columns explicitly, but for exploration this is fine.</p>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q2</span>
+        <span class="q-text">Retrieve only first_name, last_name, and city of all customers</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="kw">SELECT</span> first_name,
+       last_name,
+       city
+<span class="kw">FROM</span>   customers;</pre>
+        <p class="explain"><strong>What's happening:</strong> Instead of *, we name exactly the three columns we need. SQL fetches only those — cheaper on bandwidth and easier to read. Think of it as "project" only the columns you care about.</p>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q3</span>
+        <span class="q-text">List all unique categories in the products table</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="kw">SELECT DISTINCT</span> category
+<span class="kw">FROM</span>            products;</pre>
+        <p class="explain"><strong>What's happening:</strong> <code>DISTINCT</code> removes duplicate values. Without it, "Electronics" would appear once per electronics product. With it, you get each category exactly once.</p>
+        <div class="tags"><span class="tag tag-green">Returns: Electronics, Clothing, Home</span></div>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q4</span>
+        <span class="q-text">Identify the Primary Key of each table. Explain why it must be unique and NOT NULL.</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="cmt">-- Primary Keys in this schema:</span>
+<span class="cmt">-- customers   → customer_id  (INT, PK)</span>
+<span class="cmt">-- products    → product_id   (INT, PK)</span>
+<span class="cmt">-- orders      → order_id     (INT, PK)</span>
+<span class="cmt">-- order_items → item_id      (INT, PK)</span>
+
+<span class="cmt">-- No SQL query needed; listed from CREATE TABLE statements</span></pre>
+        <p class="explain">
+          <strong>Why UNIQUE?</strong> A Primary Key is the identity card of each row. If two customers shared <code>customer_id = 101</code>, the database wouldn't know which one an order belongs to. Uniqueness guarantees every row is identifiable without ambiguity.<br><br>
+          <strong>Why NOT NULL?</strong> A NULL means "unknown". An unknown identity is useless — you can't link orders to a customer if the customer's ID is missing. PK = UNIQUE + NOT NULL, enforced automatically by the DB engine.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q5</span>
+        <span class="q-text">What constraints apply to the email column? What happens with a duplicate email?</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="cmt">-- From schema: email VARCHAR(100) UNIQUE NOT NULL</span>
+<span class="cmt">-- Two constraints: UNIQUE and NOT NULL</span>
+
+<span class="cmt">-- Attempt to insert duplicate email:</span>
+<span class="kw">INSERT INTO</span> customers
+<span class="kw">VALUES</span> (<span class="num">109</span>, <span class="str">'Test'</span>, <span class="str">'User'</span>, <span class="str">'aarav.s@email.com'</span>,
+        <span class="str">'Delhi'</span>, <span class="str">'Delhi'</span>, <span class="str">'2024-09-01'</span>, <span class="kw">FALSE</span>);
+
+<span class="cmt">-- ❌ ERROR: Duplicate entry 'aarav.s@email.com'</span>
+<span class="cmt">--    for key 'customers.email'</span></pre>
+        <p class="explain"><strong>UNIQUE</strong> — no two rows can have the same email. The DB rejects the INSERT and throws a constraint violation error. <strong>NOT NULL</strong> — you can't skip the email field at all. Together these ensure every customer has a distinct, present email address — great for login/authentication systems.</p>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q6</span>
+        <span class="q-text">Try inserting a product with unit_price = -50. What happens?</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="kw">INSERT INTO</span> products
+<span class="kw">VALUES</span> (<span class="num">209</span>, <span class="str">'Faulty Item'</span>, <span class="str">'Electronics'</span>,
+        <span class="str">'TestBrand'</span>, <span class="num">-50.00</span>, <span class="num">100</span>);
+
+<span class="cmt">-- ❌ ERROR: Check constraint violated.</span>
+<span class="cmt">--    Constraint: CHECK (unit_price &gt; 0)</span>
+<span class="cmt">--    -50 is NOT &gt; 0, so INSERT is rejected.</span></pre>
+        <p class="explain"><strong>CHECK constraint</strong> acts like a bouncer at the door — it evaluates the condition <code>unit_price &gt; 0</code> before any INSERT or UPDATE. Since -50 fails the check, the row is never written. This prevents bad data from entering the table in the first place, no application-level code needed.</p>
+        <div class="tags"><span class="tag tag-amber">Error: CHECK constraint violation</span></div>
+      </div>
+    </div>
+  </div><!-- /section a -->
+
+  <!-- ══════════════ SECTION B ══════════════ -->
+  <div class="section visible" data-sec="b">
+    <div class="section-title">Section B — Filtering &amp; Optimization (Q7–Q12)</div>
+
+    <!-- Q7 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q7</span>
+        <span class="q-text">Retrieve all orders with status = 'Delivered'</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="kw">SELECT</span> *
+<span class="kw">FROM</span>   orders
+<span class="kw">WHERE</span>  status = <span class="str">'Delivered'</span>;</pre>
+        <p class="explain"><strong>What's happening:</strong> <code>WHERE</code> filters rows before they're returned. The DB scans the orders table and only returns rows where status exactly matches 'Delivered'. The <code>idx_orders_status</code> index makes this fast — no full table scan needed.</p>
+        <div class="tags"><span class="tag tag-green">Returns orders: 1001, 1002, 1004, 1006, 1008, 1010</span></div>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q8</span>
+        <span class="q-text">Find all Electronics products with unit_price &gt; ₹2000</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="kw">SELECT</span> product_name,
+       brand,
+       unit_price
+<span class="kw">FROM</span>   products
+<span class="kw">WHERE</span>  category  = <span class="str">'Electronics'</span>
+  <span class="kw">AND</span>  unit_price &gt; <span class="num">2000</span>;</pre>
+        <p class="explain"><strong>AND operator</strong> means both conditions must be true. The query first filters by category (uses <code>idx_products_category</code>), then further narrows to those priced above 2000.</p>
+        <div class="tags"><span class="tag tag-green">Returns: Smart Watch (₹2999), Bluetooth Speaker (₹3499)</span></div>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q9</span>
+        <span class="q-text">List customers who joined in 2024 and belong to state 'Maharashtra'</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="kw">SELECT</span> first_name,
+       last_name,
+       city,
+       join_date
+<span class="kw">FROM</span>   customers
+<span class="kw">WHERE</span>  state     = <span class="str">'Maharashtra'</span>
+  <span class="kw">AND</span>  join_date &gt;= <span class="str">'2024-01-01'</span>
+  <span class="kw">AND</span>  join_date &lt;  <span class="str">'2025-01-01'</span>;</pre>
+        <p class="explain"><strong>Why range instead of YEAR()?</strong> Using <code>join_date &gt;= '2024-01-01' AND join_date &lt; '2025-01-01'</code> is SARGable (index-friendly). <code>YEAR(join_date) = 2024</code> would wrap the column in a function, breaking the index. The range approach lets the DB use the date index directly.</p>
+        <div class="tags"><span class="tag tag-green">Returns: Aarav Sharma (Mumbai), Karan Mehta (Pune)</span></div>
+      </div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q10</span>
+        <span class="q-text">Find all orders between 2024-08-10 and 2024-08-25 that are NOT cancelled</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="kw">SELECT</span> order_id,
+       order_date,
+       status,
+       total_amount
+<span class="kw">FROM</span>   orders
+<span class="kw">WHERE</span>  order_date <span class="kw">BETWEEN</span> <span class="str">'2024-08-10'</span> <span class="kw">AND</span> <span class="str">'2024-08-25'</span>
+  <span class="kw">AND</span>  status &lt;&gt; <span class="str">'Cancelled'</span>;</pre>
+        <p class="explain"><strong>BETWEEN</strong> is inclusive on both ends — same as <code>&gt;= '2024-08-10' AND &lt;= '2024-08-25'</code>. <code>&lt;&gt;</code> means "not equal to". The <code>idx_orders_date</code> index speeds up the date range scan.</p>
+        <div class="tags"><span class="tag tag-green">Returns: 1004 (Delivered), 1006 (Delivered), 1007 (Pending), 1008 (Delivered), 1009 (Shipped)</span></div>
+      </div>
+    </div>
+
+    <!-- Q11 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q11</span>
+        <span class="q-text">Explain idx_orders_date — how it improves performance + sample query</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="cmt">-- Without index: DB reads EVERY row (full table scan)</span>
+<span class="cmt">-- O(n) — scans all orders to find date matches</span>
+
+<span class="cmt">-- With idx_orders_date: DB jumps directly to matching rows</span>
+<span class="cmt">-- O(log n) — like a sorted book index</span>
+
+<span class="cmt">-- Sample query that benefits from the index:</span>
+<span class="kw">SELECT</span> order_id,
+       customer_id,
+       total_amount
+<span class="kw">FROM</span>   orders
+<span class="kw">WHERE</span>  order_date &gt;= <span class="str">'2024-08-15'</span>
+  <span class="kw">AND</span>  order_date &lt;= <span class="str">'2024-08-31'</span>;</pre>
+        <p class="explain"><strong>How indexes work:</strong> Think of <code>idx_orders_date</code> like the index at the back of a textbook. Instead of scanning every page for "August orders", the DB looks up "2024-08-15" in the sorted B-tree index and jumps straight to those rows. For large tables (millions of rows), this difference is enormous — milliseconds vs seconds.</p>
+      </div>
+    </div>
+
+    <!-- Q12 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q12</span>
+        <span class="q-text">YEAR(join_date) = 2024 — would the index be used? Rewrite as SARGable.</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="cmt">-- ❌ NOT index-friendly (wraps column in function)</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> customers
+<span class="kw">WHERE</span> <span class="kw">YEAR</span>(join_date) = <span class="num">2024</span>;
+
+<span class="cmt">-- ✅ SARGable — index CAN be used</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> customers
+<span class="kw">WHERE</span>  join_date &gt;= <span class="str">'2024-01-01'</span>
+  <span class="kw">AND</span>  join_date &lt;  <span class="str">'2025-01-01'</span>;</pre>
+        <p class="explain"><strong>SARGable</strong> = Search ARGument ABLE. When you wrap a column in <code>YEAR()</code>, the DB must compute that function for <em>every row</em> before comparing — the index on the raw column becomes useless. By rewriting to a range comparison, the column appears "naked" on the left side, so the index B-tree can be used directly. Rule of thumb: <strong>never transform the column in a WHERE clause.</strong></p>
+        <div class="tags">
+          <span class="tag tag-amber">YEAR() → full scan</span>
+          <span class="tag tag-green">Range → index scan</span>
+        </div>
+      </div>
+    </div>
+  </div><!-- /section b -->
+
+  <!-- ══════════════ SECTION C ══════════════ -->
+  <div class="section visible" data-sec="c">
+    <div class="section-title">Section C — Aggregation (Q13–Q18)</div>
+
+    <!-- Q13 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q13</span>
+        <span class="q-text">Count the total number of orders in the orders table</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="kw">SELECT</span> <span class="kw">COUNT</span>(*) <span class="kw">AS</span> total_orders
+<span class="kw">FROM</span>   orders;</pre>
+        <p class="explain"><strong>COUNT(*)</strong> counts every row regardless of NULLs. <code>AS total_orders</code> gives the result column a friendly name. With our sample data, this returns 10.</p>
+        <div class="tags"><span class="tag tag-green">Result: 10</span></div>
+      </div>
+    </div>
+
+    <!-- Q14 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q14</span>
+        <span class="q-text">Find the total revenue (SUM of total_amount) from all 'Delivered' orders</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="kw">SELECT</span> <span class="kw">SUM</span>(total_amount) <span class="kw">AS</span> total_revenue
+<span class="kw">FROM</span>   orders
+<span class="kw">WHERE</span>  status = <span class="str">'Delivered'</span>;</pre>
+        <p class="explain"><strong>SUM()</strong> adds up all values in that column for the filtered rows. WHERE runs first (filtering delivered orders), then SUM() aggregates what's left.</p>
+        <div class="tags"><span class="tag tag-green">Result: ₹18,791.00</span></div>
+      </div>
+    </div>
+
+    <!-- Q15 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q15</span>
+        <span class="q-text">Calculate the average unit_price of products in each category</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="kw">SELECT</span>   category,
+         <span class="kw">ROUND</span>(<span class="kw">AVG</span>(unit_price), <span class="num">2</span>) <span class="kw">AS</span> avg_price
+<span class="kw">FROM</span>     products
+<span class="kw">GROUP BY</span> category
+<span class="kw">ORDER BY</span> avg_price <span class="kw">DESC</span>;</pre>
+        <p class="explain"><strong>GROUP BY</strong> splits the table into buckets by category, then <strong>AVG()</strong> computes the average price within each bucket. <code>ROUND(..., 2)</code> keeps it to 2 decimal places. Think of GROUP BY as "for each unique value of this column, apply the aggregate."</p>
+        <div class="tags"><span class="tag tag-green">Electronics: ₹2224 | Clothing: ₹2699 | Home: ₹949</span></div>
+      </div>
+    </div>
+
+    <!-- Q16 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q16</span>
+        <span class="q-text">For each order status, find count of orders and total revenue. Sort by total revenue descending.</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="kw">SELECT</span>   status,
+         <span class="kw">COUNT</span>(*) <span class="kw">AS</span> order_count,
+         <span class="kw">SUM</span>(total_amount) <span class="kw">AS</span> total_revenue
+<span class="kw">FROM</span>     orders
+<span class="kw">GROUP BY</span> status
+<span class="kw">ORDER BY</span> total_revenue <span class="kw">DESC</span>;</pre>
+        <p class="explain"><strong>Multiple aggregates in one GROUP BY</strong> — you can apply COUNT and SUM simultaneously per group. ORDER BY runs after GROUP BY, so it can sort by the computed column <code>total_revenue</code>. This gives management a clean view of revenue by order stage.</p>
+      </div>
+    </div>
+
+    <!-- Q17 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q17</span>
+        <span class="q-text">Find the most expensive (MAX) and cheapest (MIN) product in each category</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="kw">SELECT</span>   category,
+         <span class="kw">MAX</span>(unit_price) <span class="kw">AS</span> max_price,
+         <span class="kw">MIN</span>(unit_price) <span class="kw">AS</span> min_price
+<span class="kw">FROM</span>     products
+<span class="kw">GROUP BY</span> category;</pre>
+        <p class="explain"><strong>MAX() and MIN()</strong> find the extreme values per group. Combined with GROUP BY you get the price range for each category in one query. Useful for showing customers "prices starting from ₹X" per category.</p>
+        <div class="tags"><span class="tag tag-green">Electronics: ₹899–₹3499 | Clothing: ₹799–₹4599 | Home: ₹599–₹1299</span></div>
+      </div>
+    </div>
+
+    <!-- Q18 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q18</span>
+        <span class="q-text">List product categories where the average unit_price is greater than ₹2000 (use HAVING)</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="kw">SELECT</span>   category,
+         <span class="kw">ROUND</span>(<span class="kw">AVG</span>(unit_price), <span class="num">2</span>) <span class="kw">AS</span> avg_price
+<span class="kw">FROM</span>     products
+<span class="kw">GROUP BY</span> category
+<span class="kw">HAVING</span>   <span class="kw">AVG</span>(unit_price) &gt; <span class="num">2000</span>;</pre>
+        <p class="explain"><strong>HAVING vs WHERE:</strong> WHERE filters individual rows before grouping. HAVING filters groups after aggregation. You can't write <code>WHERE AVG(unit_price) &gt; 2000</code> because AVG doesn't exist yet at the WHERE stage. HAVING is the "WHERE for aggregated results". Only Clothing (₹2699) qualifies here.</p>
+        <div class="tags"><span class="tag tag-green">Result: Clothing (₹2699)</span></div>
+      </div>
+    </div>
+  </div><!-- /section c -->
+
+  <!-- ══════════════ SECTION D ══════════════ -->
+  <div class="section visible" data-sec="d">
+    <div class="section-title">Section D — Joins &amp; Relationships (Q19–Q23)</div>
+
+    <!-- Q19 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q19</span>
+        <span class="q-text">INNER JOIN — display each order with customer's first_name, last_name</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="kw">SELECT</span> o.order_id,
+       o.order_date,
+       c.first_name,
+       c.last_name,
+       o.total_amount
+<span class="kw">FROM</span>   orders    o
+<span class="kw">INNER JOIN</span> customers c
+       <span class="kw">ON</span> o.customer_id = c.customer_id;</pre>
+        <p class="explain"><strong>INNER JOIN</strong> returns only rows where the join condition matches in BOTH tables. We alias <code>orders</code> as <code>o</code> and <code>customers</code> as <code>c</code> for brevity. The <code>ON</code> clause links them via the foreign key. Result: every order gets its customer's name appended — no orphan rows, no missing rows.</p>
+      </div>
+    </div>
+
+    <!-- Q20 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q20</span>
+        <span class="q-text">LEFT JOIN — list ALL customers and their orders (NULLs for customers with no orders)</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="kw">SELECT</span> c.customer_id,
+       c.first_name,
+       c.last_name,
+       o.order_id,
+       o.total_amount
+<span class="kw">FROM</span>      customers c
+<span class="kw">LEFT JOIN</span> orders    o
+          <span class="kw">ON</span> c.customer_id = o.customer_id;</pre>
+        <p class="explain"><strong>LEFT JOIN</strong> keeps ALL rows from the left table (customers) regardless of whether a match exists in the right table (orders). Customers with no orders get NULL in order_id and total_amount columns. In our data, all 8 customers have at least one order, but in reality new or churned customers would show up with NULLs here.</p>
+      </div>
+    </div>
+
+    <!-- Q21 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q21</span>
+        <span class="q-text">3-table JOIN: orders → order_items → products showing product details per order item</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="kw">SELECT</span>  o.order_id,
+        p.product_name,
+        oi.quantity,
+        oi.unit_price,
+        oi.discount_pct
+<span class="kw">FROM</span>        orders      o
+<span class="kw">INNER JOIN</span> order_items oi
+           <span class="kw">ON</span> o.order_id    = oi.order_id
+<span class="kw">INNER JOIN</span> products    p
+           <span class="kw">ON</span> oi.product_id = p.product_id
+<span class="kw">ORDER BY</span> o.order_id;</pre>
+        <p class="explain"><strong>Chaining joins:</strong> Each JOIN adds a new table. First we link orders → order_items on order_id, then link order_items → products on product_id. This follows the FK chain: orders → order_items → products. Each row in the result = one line item on one order, enriched with the product name.</p>
+      </div>
+    </div>
+
+    <!-- Q22 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q22</span>
+        <span class="q-text">Explain LEFT JOIN vs RIGHT JOIN with examples. When would you use FULL OUTER JOIN?</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="cmt">-- LEFT JOIN: all customers + matching orders</span>
+<span class="kw">SELECT</span> c.first_name, o.order_id
+<span class="kw">FROM</span>      customers c
+<span class="kw">LEFT JOIN</span> orders    o <span class="kw">ON</span> c.customer_id = o.customer_id;
+<span class="cmt">-- → customers with NO orders appear (order_id = NULL)</span>
+
+<span class="cmt">-- RIGHT JOIN: all orders + matching customers</span>
+<span class="kw">SELECT</span> c.first_name, o.order_id
+<span class="kw">FROM</span>       customers c
+<span class="kw">RIGHT JOIN</span> orders    o <span class="kw">ON</span> c.customer_id = o.customer_id;
+<span class="cmt">-- → orders with NO customer match appear (data integrity issue)</span>
+
+<span class="cmt">-- FULL OUTER JOIN: everything from both sides</span>
+<span class="kw">SELECT</span> c.first_name, o.order_id
+<span class="kw">FROM</span>            customers c
+<span class="kw">FULL OUTER JOIN</span> orders    o <span class="kw">ON</span> c.customer_id = o.customer_id;
+<span class="cmt">-- → customers with no orders AND orders with no customer</span></pre>
+        <p class="explain">
+          <strong>LEFT JOIN</strong> — dominant side is left. All left rows appear, right side is NULL if no match. Use when: "show all customers, even those who haven't ordered yet."<br><br>
+          <strong>RIGHT JOIN</strong> — dominant side is right. Mirror of LEFT JOIN. Rarely needed (just swap table order and use LEFT JOIN instead).<br><br>
+          <strong>FULL OUTER JOIN</strong> — use for data quality audits: "find all orphan orders and inactive customers in one go." MySQL doesn't support FULL OUTER JOIN natively — simulate with <code>LEFT JOIN UNION ALL RIGHT JOIN WHERE ... IS NULL</code>.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q23 -->
+    <div class="q-card">
+      <div class="q-header" onclick="tog(this)">
+        <span class="q-num">Q23</span>
+        <span class="q-text">Identify all FK relationships. What happens if you insert an order with customer_id = 999?</span>
+        <span class="q-arrow">›</span>
+      </div>
+      <div class="q-body">
+        <pre><span class="cmt">-- Foreign Key relationships in this schema:</span>
+<span class="cmt">-- orders.customer_id     → customers.customer_id</span>
+<span class="cmt">-- order_items.order_id   → orders.order_id</span>
+<span class="cmt">-- order_items.product_id → products.product_id</span>
+
+<span class="cmt">-- Attempt to insert order with non-existent customer:</span>
+<span class="kw">INSERT INTO</span> orders
+<span class="kw">VALUES</span> (<span class="num">1011</span>, <span class="num">999</span>, <span class="str">'2024-09-01'</span>, <span class="str">'Pending'</span>, <span class="num">500.00</span>);
+
+<span class="cmt">-- ❌ ERROR: Cannot add or update a child row:</span>
+<span class="cmt">--    a foreign key constraint fails</span>
+<span class="cmt">--    (`orders`.`customer_id` references `customers`.`customer_id`)</span>
+<span class="cmt">--    customer_id 999 does not exist in customers table</span></pre>
+        <p class="explain">
+          <strong>Referential Integrity:</strong> FK constraints are the database's way of enforcing "you can't have an order for a customer who doesn't exist." The DB checks whether 999 exists in customers.customer_id before allowing the INSERT into orders. Since it doesn't exist, the whole operation is rejected — no partial writes.<br><br>
+          <strong>Why this matters:</strong> Without FK constraints, you'd have "ghost" orders pointing to deleted/non-existent customers, causing broken reports and app crashes. FKs keep your data consistent automatically.
+        </p>
+        <div class="tags">
+          <span class="tag tag-amber">Error: FK constraint violation</span>
+          <span class="tag tag-green">Fix: Insert customer 999 first, then the order</span>
+        </div>
+      </div>
+    </div>
+  </div><!-- /section d -->
+
+  <footer>ShopEase SQL Assignment &mdash; 23 Questions &mdash; Sections A · B · C · D</footer>
+</div><!-- /container -->
+
+<script>
+  function tog(header) {
+    const arrow = header.querySelector('.q-arrow');
+    const body  = header.nextElementSibling;
+    const open  = body.classList.toggle('open');
+    arrow.classList.toggle('open', open);
+  }
+
+  let allOpen = false;
+  function toggleAll() {
+    allOpen = !allOpen;
+    document.querySelectorAll('.q-body').forEach(b => b.classList.toggle('open', allOpen));
+    document.querySelectorAll('.q-arrow').forEach(a => a.classList.toggle('open', allOpen));
+    document.querySelector('.expand-btn').textContent = allOpen ? 'Collapse all ↑' : 'Expand all ↓';
+  }
+
+  function showSec(sec, btn) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.section[data-sec]').forEach(s => {
+      s.classList.toggle('visible', sec === 'all' || s.dataset.sec === sec);
+    });
+  }
+</script>
+</body>
+</html>
