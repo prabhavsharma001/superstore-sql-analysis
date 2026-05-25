@@ -1,0 +1,1460 @@
+{
+  "schema_sample_data": {
+    "total_rows": {
+      "columns": [
+        "total_rows"
+      ],
+      "data": [
+        {
+          "total_rows": 9994
+        }
+      ]
+    },
+    "distinct_counts": {
+      "columns": [
+        "unique_orders",
+        "unique_customers",
+        "unique_products",
+        "unique_regions",
+        "unique_categories",
+        "unique_sub_categories"
+      ],
+      "data": [
+        {
+          "unique_orders": 9426,
+          "unique_customers": 392,
+          "unique_products": 3335,
+          "unique_regions": 4,
+          "unique_categories": 3,
+          "unique_sub_categories": 16
+        }
+      ]
+    },
+    "date_range": {
+      "columns": [
+        "earliest_order",
+        "latest_order"
+      ],
+      "data": [
+        {
+          "earliest_order": "2019-01-01",
+          "latest_order": "2022-12-31"
+        }
+      ]
+    },
+    "summary_stats": {
+      "columns": [
+        "min_sales",
+        "max_sales",
+        "avg_sales",
+        "total_sales",
+        "min_profit",
+        "max_profit",
+        "avg_profit",
+        "total_profit"
+      ],
+      "data": [
+        {
+          "min_sales": 6.22,
+          "max_sales": 27983.81,
+          "avg_sales": 6163.32,
+          "total_sales": 61596193.82,
+          "min_profit": -5075.23,
+          "max_profit": 10495.05,
+          "avg_profit": 734.4,
+          "total_profit": 7339564.59
+        }
+      ]
+    }
+  },
+  "region_sales": {
+    "by_region": {
+      "columns": [
+        "Region",
+        "total_orders",
+        "total_sales",
+        "total_profit",
+        "avg_sales",
+        "profit_margin_pct"
+      ],
+      "data": [
+        {
+          "Region": "South",
+          "total_orders": 2499,
+          "total_sales": 15791807.38,
+          "total_profit": 1864258.93,
+          "avg_sales": 6241.82,
+          "profit_margin_pct": 11.81
+        },
+        {
+          "Region": "East",
+          "total_orders": 2476,
+          "total_sales": 15393455.48,
+          "total_profit": 1907850.35,
+          "avg_sales": 6137.74,
+          "profit_margin_pct": 12.39
+        },
+        {
+          "Region": "West",
+          "total_orders": 2474,
+          "total_sales": 15208576.78,
+          "total_profit": 1882782.25,
+          "avg_sales": 6064.03,
+          "profit_margin_pct": 12.38
+        },
+        {
+          "Region": "Central",
+          "total_orders": 2413,
+          "total_sales": 15202354.18,
+          "total_profit": 1684673.06,
+          "avg_sales": 6210.11,
+          "profit_margin_pct": 11.08
+        }
+      ]
+    }
+  },
+  "category_sales": {
+    "by_category": {
+      "columns": [
+        "Category",
+        "total_orders",
+        "total_units",
+        "total_sales",
+        "total_profit",
+        "avg_discount_pct",
+        "profit_margin_pct"
+      ],
+      "data": [
+        {
+          "Category": "Furniture",
+          "total_orders": 3302,
+          "total_units": 25321,
+          "total_sales": 20673766.94,
+          "total_profit": 2404315.44,
+          "avg_discount_pct": 18.56,
+          "profit_margin_pct": 11.63
+        },
+        {
+          "Category": "Technology",
+          "total_orders": 3270,
+          "total_units": 25213,
+          "total_sales": 20557792.78,
+          "total_profit": 2401318.74,
+          "avg_discount_pct": 19.11,
+          "profit_margin_pct": 11.68
+        },
+        {
+          "Category": "Office Supplies",
+          "total_orders": 3226,
+          "total_units": 24873,
+          "total_sales": 20364634.1,
+          "total_profit": 2533930.41,
+          "avg_discount_pct": 18.68,
+          "profit_margin_pct": 12.44
+        }
+      ]
+    },
+    "by_sub_category": {
+      "columns": [
+        "Category",
+        "Sub_Category",
+        "units",
+        "total_sales",
+        "total_profit",
+        "margin_pct"
+      ],
+      "data": [
+        {
+          "Category": "Furniture",
+          "Sub_Category": "Tables",
+          "units": 6674,
+          "total_sales": 5633039.77,
+          "total_profit": 737007.72,
+          "margin_pct": 13.08
+        },
+        {
+          "Category": "Furniture",
+          "Sub_Category": "Chairs",
+          "units": 6442,
+          "total_sales": 5316843.21,
+          "total_profit": 567383.41,
+          "margin_pct": 10.67
+        },
+        {
+          "Category": "Technology",
+          "Sub_Category": "Phones",
+          "units": 6398,
+          "total_sales": 5289197.67,
+          "total_profit": 601076.56,
+          "margin_pct": 11.36
+        },
+        {
+          "Category": "Technology",
+          "Sub_Category": "Machines",
+          "units": 6314,
+          "total_sales": 5194394.94,
+          "total_profit": 587926.01,
+          "margin_pct": 11.32
+        },
+        {
+          "Category": "Technology",
+          "Sub_Category": "Accessories",
+          "units": 6352,
+          "total_sales": 5075893.86,
+          "total_profit": 606192.44,
+          "margin_pct": 11.94
+        },
+        {
+          "Category": "Technology",
+          "Sub_Category": "Copiers",
+          "units": 6149,
+          "total_sales": 4998306.31,
+          "total_profit": 606123.73,
+          "margin_pct": 12.13
+        },
+        {
+          "Category": "Furniture",
+          "Sub_Category": "Furnishings",
+          "units": 6198,
+          "total_sales": 4988326.3,
+          "total_profit": 533358.77,
+          "margin_pct": 10.69
+        },
+        {
+          "Category": "Furniture",
+          "Sub_Category": "Bookcases",
+          "units": 6007,
+          "total_sales": 4735557.66,
+          "total_profit": 566565.54,
+          "margin_pct": 11.96
+        },
+        {
+          "Category": "Office Supplies",
+          "Sub_Category": "Supplies",
+          "units": 3287,
+          "total_sales": 2755287.5,
+          "total_profit": 390157.25,
+          "margin_pct": 14.16
+        },
+        {
+          "Category": "Office Supplies",
+          "Sub_Category": "Fasteners",
+          "units": 3148,
+          "total_sales": 2683013.46,
+          "total_profit": 347977.7,
+          "margin_pct": 12.97
+        },
+        {
+          "Category": "Office Supplies",
+          "Sub_Category": "Paper",
+          "units": 3141,
+          "total_sales": 2583604.28,
+          "total_profit": 272680.08,
+          "margin_pct": 10.55
+        },
+        {
+          "Category": "Office Supplies",
+          "Sub_Category": "Storage",
+          "units": 3046,
+          "total_sales": 2552905.44,
+          "total_profit": 322169.54,
+          "margin_pct": 12.62
+        },
+        {
+          "Category": "Office Supplies",
+          "Sub_Category": "Art",
+          "units": 3179,
+          "total_sales": 2545472.87,
+          "total_profit": 320523.95,
+          "margin_pct": 12.59
+        },
+        {
+          "Category": "Office Supplies",
+          "Sub_Category": "Binders",
+          "units": 3177,
+          "total_sales": 2540793.49,
+          "total_profit": 322037.98,
+          "margin_pct": 12.67
+        },
+        {
+          "Category": "Office Supplies",
+          "Sub_Category": "Labels",
+          "units": 3012,
+          "total_sales": 2453094.16,
+          "total_profit": 300951.63,
+          "margin_pct": 12.27
+        },
+        {
+          "Category": "Office Supplies",
+          "Sub_Category": "Envelopes",
+          "units": 2883,
+          "total_sales": 2250462.9,
+          "total_profit": 257432.28,
+          "margin_pct": 11.44
+        }
+      ]
+    }
+  },
+  "top_products": {
+    "top10_by_sales": {
+      "columns": [
+        "Product_Name",
+        "Category",
+        "Sub_Category",
+        "times_ordered",
+        "total_units",
+        "total_sales",
+        "total_profit"
+      ],
+      "data": [
+        {
+          "Product_Name": "Tables Model 393",
+          "Category": "Furniture",
+          "Sub_Category": "Tables",
+          "times_ordered": 883,
+          "total_units": 6674,
+          "total_sales": 5633039.77,
+          "total_profit": 737007.72
+        },
+        {
+          "Product_Name": "Chairs Model 341",
+          "Category": "Furniture",
+          "Sub_Category": "Chairs",
+          "times_ordered": 866,
+          "total_units": 6442,
+          "total_sales": 5316843.21,
+          "total_profit": 567383.41
+        },
+        {
+          "Product_Name": "Phones Model 409",
+          "Category": "Technology",
+          "Sub_Category": "Phones",
+          "times_ordered": 856,
+          "total_units": 6398,
+          "total_sales": 5289197.67,
+          "total_profit": 601076.56
+        },
+        {
+          "Product_Name": "Machines Model 29",
+          "Category": "Technology",
+          "Sub_Category": "Machines",
+          "times_ordered": 833,
+          "total_units": 6314,
+          "total_sales": 5194394.94,
+          "total_profit": 587926.01
+        },
+        {
+          "Product_Name": "Accessories Model 342",
+          "Category": "Technology",
+          "Sub_Category": "Accessories",
+          "times_ordered": 842,
+          "total_units": 6352,
+          "total_sales": 5075893.86,
+          "total_profit": 606192.44
+        },
+        {
+          "Product_Name": "Copiers Model 362",
+          "Category": "Technology",
+          "Sub_Category": "Copiers",
+          "times_ordered": 811,
+          "total_units": 6149,
+          "total_sales": 4998306.31,
+          "total_profit": 606123.73
+        },
+        {
+          "Product_Name": "Furnishings Model 343",
+          "Category": "Furniture",
+          "Sub_Category": "Furnishings",
+          "times_ordered": 825,
+          "total_units": 6198,
+          "total_sales": 4988326.3,
+          "total_profit": 533358.77
+        },
+        {
+          "Product_Name": "Bookcases Model 429",
+          "Category": "Furniture",
+          "Sub_Category": "Bookcases",
+          "times_ordered": 793,
+          "total_units": 6007,
+          "total_sales": 4735557.66,
+          "total_profit": 566565.54
+        },
+        {
+          "Product_Name": "Supplies Model 465",
+          "Category": "Office Supplies",
+          "Sub_Category": "Supplies",
+          "times_ordered": 425,
+          "total_units": 3287,
+          "total_sales": 2755287.5,
+          "total_profit": 390157.25
+        },
+        {
+          "Product_Name": "Fasteners Model 432",
+          "Category": "Office Supplies",
+          "Sub_Category": "Fasteners",
+          "times_ordered": 403,
+          "total_units": 3148,
+          "total_sales": 2683013.46,
+          "total_profit": 347977.7
+        }
+      ]
+    },
+    "top10_by_profit": {
+      "columns": [
+        "Product_Name",
+        "Category",
+        "Sub_Category",
+        "total_sales",
+        "total_profit",
+        "margin_pct"
+      ],
+      "data": [
+        {
+          "Product_Name": "Tables Model 393",
+          "Category": "Furniture",
+          "Sub_Category": "Tables",
+          "total_sales": 5633039.77,
+          "total_profit": 737007.72,
+          "margin_pct": 13.08
+        },
+        {
+          "Product_Name": "Accessories Model 342",
+          "Category": "Technology",
+          "Sub_Category": "Accessories",
+          "total_sales": 5075893.86,
+          "total_profit": 606192.44,
+          "margin_pct": 11.94
+        },
+        {
+          "Product_Name": "Copiers Model 362",
+          "Category": "Technology",
+          "Sub_Category": "Copiers",
+          "total_sales": 4998306.31,
+          "total_profit": 606123.73,
+          "margin_pct": 12.13
+        },
+        {
+          "Product_Name": "Phones Model 409",
+          "Category": "Technology",
+          "Sub_Category": "Phones",
+          "total_sales": 5289197.67,
+          "total_profit": 601076.56,
+          "margin_pct": 11.36
+        },
+        {
+          "Product_Name": "Machines Model 29",
+          "Category": "Technology",
+          "Sub_Category": "Machines",
+          "total_sales": 5194394.94,
+          "total_profit": 587926.01,
+          "margin_pct": 11.32
+        },
+        {
+          "Product_Name": "Chairs Model 341",
+          "Category": "Furniture",
+          "Sub_Category": "Chairs",
+          "total_sales": 5316843.21,
+          "total_profit": 567383.41,
+          "margin_pct": 10.67
+        },
+        {
+          "Product_Name": "Bookcases Model 429",
+          "Category": "Furniture",
+          "Sub_Category": "Bookcases",
+          "total_sales": 4735557.66,
+          "total_profit": 566565.54,
+          "margin_pct": 11.96
+        },
+        {
+          "Product_Name": "Furnishings Model 343",
+          "Category": "Furniture",
+          "Sub_Category": "Furnishings",
+          "total_sales": 4988326.3,
+          "total_profit": 533358.77,
+          "margin_pct": 10.69
+        },
+        {
+          "Product_Name": "Supplies Model 465",
+          "Category": "Office Supplies",
+          "Sub_Category": "Supplies",
+          "total_sales": 2755287.5,
+          "total_profit": 390157.25,
+          "margin_pct": 14.16
+        },
+        {
+          "Product_Name": "Fasteners Model 432",
+          "Category": "Office Supplies",
+          "Sub_Category": "Fasteners",
+          "total_sales": 2683013.46,
+          "total_profit": 347977.7,
+          "margin_pct": 12.97
+        }
+      ]
+    },
+    "bottom10_by_profit": {
+      "columns": [
+        "Product_Name",
+        "Category",
+        "Sub_Category",
+        "total_sales",
+        "total_profit"
+      ],
+      "data": [
+        {
+          "Product_Name": "Envelopes Model 119",
+          "Category": "Office Supplies",
+          "Sub_Category": "Envelopes",
+          "total_sales": 2250462.9,
+          "total_profit": 257432.28
+        },
+        {
+          "Product_Name": "Paper Model 193",
+          "Category": "Office Supplies",
+          "Sub_Category": "Paper",
+          "total_sales": 2583604.28,
+          "total_profit": 272680.08
+        },
+        {
+          "Product_Name": "Labels Model 193",
+          "Category": "Office Supplies",
+          "Sub_Category": "Labels",
+          "total_sales": 2453094.16,
+          "total_profit": 300951.63
+        },
+        {
+          "Product_Name": "Art Model 436",
+          "Category": "Office Supplies",
+          "Sub_Category": "Art",
+          "total_sales": 2545472.87,
+          "total_profit": 320523.95
+        },
+        {
+          "Product_Name": "Binders Model 60",
+          "Category": "Office Supplies",
+          "Sub_Category": "Binders",
+          "total_sales": 2540793.49,
+          "total_profit": 322037.98
+        },
+        {
+          "Product_Name": "Storage Model 404",
+          "Category": "Office Supplies",
+          "Sub_Category": "Storage",
+          "total_sales": 2552905.44,
+          "total_profit": 322169.54
+        },
+        {
+          "Product_Name": "Fasteners Model 432",
+          "Category": "Office Supplies",
+          "Sub_Category": "Fasteners",
+          "total_sales": 2683013.46,
+          "total_profit": 347977.7
+        },
+        {
+          "Product_Name": "Supplies Model 465",
+          "Category": "Office Supplies",
+          "Sub_Category": "Supplies",
+          "total_sales": 2755287.5,
+          "total_profit": 390157.25
+        },
+        {
+          "Product_Name": "Furnishings Model 343",
+          "Category": "Furniture",
+          "Sub_Category": "Furnishings",
+          "total_sales": 4988326.3,
+          "total_profit": 533358.77
+        },
+        {
+          "Product_Name": "Bookcases Model 429",
+          "Category": "Furniture",
+          "Sub_Category": "Bookcases",
+          "total_sales": 4735557.66,
+          "total_profit": 566565.54
+        }
+      ]
+    }
+  },
+  "monthly_trends": {
+    "monthly": {
+      "columns": [
+        "year_month",
+        "orders",
+        "monthly_sales",
+        "monthly_profit"
+      ],
+      "data": [
+        {
+          "year_month": "2019-01",
+          "orders": 203,
+          "monthly_sales": 1241014.49,
+          "monthly_profit": 171985.23
+        },
+        {
+          "year_month": "2019-02",
+          "orders": 174,
+          "monthly_sales": 1136835.76,
+          "monthly_profit": 133420.16
+        },
+        {
+          "year_month": "2019-03",
+          "orders": 215,
+          "monthly_sales": 1369576.33,
+          "monthly_profit": 196427.63
+        },
+        {
+          "year_month": "2019-04",
+          "orders": 216,
+          "monthly_sales": 1319949.87,
+          "monthly_profit": 158118.8
+        },
+        {
+          "year_month": "2019-05",
+          "orders": 209,
+          "monthly_sales": 1308642.43,
+          "monthly_profit": 140480.34
+        },
+        {
+          "year_month": "2019-06",
+          "orders": 197,
+          "monthly_sales": 1214873.09,
+          "monthly_profit": 142125.86
+        },
+        {
+          "year_month": "2019-07",
+          "orders": 207,
+          "monthly_sales": 1149641.81,
+          "monthly_profit": 142706.25
+        },
+        {
+          "year_month": "2019-08",
+          "orders": 225,
+          "monthly_sales": 1588232.29,
+          "monthly_profit": 177104.99
+        },
+        {
+          "year_month": "2019-09",
+          "orders": 193,
+          "monthly_sales": 1298678.23,
+          "monthly_profit": 164786.72
+        },
+        {
+          "year_month": "2019-10",
+          "orders": 213,
+          "monthly_sales": 1313617.68,
+          "monthly_profit": 196849.15
+        },
+        {
+          "year_month": "2019-11",
+          "orders": 211,
+          "monthly_sales": 1360249.52,
+          "monthly_profit": 179909.73
+        },
+        {
+          "year_month": "2019-12",
+          "orders": 205,
+          "monthly_sales": 1225414.67,
+          "monthly_profit": 143076.77
+        },
+        {
+          "year_month": "2020-01",
+          "orders": 205,
+          "monthly_sales": 1277867.86,
+          "monthly_profit": 141555.17
+        },
+        {
+          "year_month": "2020-02",
+          "orders": 184,
+          "monthly_sales": 1103816.95,
+          "monthly_profit": 131456.99
+        },
+        {
+          "year_month": "2020-03",
+          "orders": 191,
+          "monthly_sales": 1218085.71,
+          "monthly_profit": 124831.33
+        },
+        {
+          "year_month": "2020-04",
+          "orders": 197,
+          "monthly_sales": 1069158.44,
+          "monthly_profit": 128533.91
+        },
+        {
+          "year_month": "2020-05",
+          "orders": 220,
+          "monthly_sales": 1403403.79,
+          "monthly_profit": 169089.01
+        },
+        {
+          "year_month": "2020-06",
+          "orders": 194,
+          "monthly_sales": 1322808.27,
+          "monthly_profit": 172229.89
+        },
+        {
+          "year_month": "2020-07",
+          "orders": 222,
+          "monthly_sales": 1357353.6,
+          "monthly_profit": 170916.9
+        },
+        {
+          "year_month": "2020-08",
+          "orders": 210,
+          "monthly_sales": 1214109.1,
+          "monthly_profit": 90131.0
+        },
+        {
+          "year_month": "2020-09",
+          "orders": 212,
+          "monthly_sales": 1255232.67,
+          "monthly_profit": 129255.54
+        },
+        {
+          "year_month": "2020-10",
+          "orders": 206,
+          "monthly_sales": 1349709.93,
+          "monthly_profit": 154476.07
+        },
+        {
+          "year_month": "2020-11",
+          "orders": 207,
+          "monthly_sales": 1321641.77,
+          "monthly_profit": 164490.63
+        },
+        {
+          "year_month": "2020-12",
+          "orders": 208,
+          "monthly_sales": 1334201.12,
+          "monthly_profit": 145768.88
+        },
+        {
+          "year_month": "2021-01",
+          "orders": 229,
+          "monthly_sales": 1396558.89,
+          "monthly_profit": 153986.02
+        },
+        {
+          "year_month": "2021-02",
+          "orders": 197,
+          "monthly_sales": 1271832.95,
+          "monthly_profit": 153784.42
+        },
+        {
+          "year_month": "2021-03",
+          "orders": 171,
+          "monthly_sales": 989458.92,
+          "monthly_profit": 132689.95
+        },
+        {
+          "year_month": "2021-04",
+          "orders": 220,
+          "monthly_sales": 1413541.76,
+          "monthly_profit": 182202.85
+        },
+        {
+          "year_month": "2021-05",
+          "orders": 223,
+          "monthly_sales": 1280234.81,
+          "monthly_profit": 161176.5
+        },
+        {
+          "year_month": "2021-06",
+          "orders": 211,
+          "monthly_sales": 1226174.64,
+          "monthly_profit": 147785.52
+        },
+        {
+          "year_month": "2021-07",
+          "orders": 212,
+          "monthly_sales": 1436068.71,
+          "monthly_profit": 170533.86
+        },
+        {
+          "year_month": "2021-08",
+          "orders": 193,
+          "monthly_sales": 1211319.15,
+          "monthly_profit": 122086.93
+        },
+        {
+          "year_month": "2021-09",
+          "orders": 218,
+          "monthly_sales": 1304740.87,
+          "monthly_profit": 114520.61
+        },
+        {
+          "year_month": "2021-10",
+          "orders": 207,
+          "monthly_sales": 1300875.35,
+          "monthly_profit": 116906.98
+        },
+        {
+          "year_month": "2021-11",
+          "orders": 212,
+          "monthly_sales": 1301193.16,
+          "monthly_profit": 182779.31
+        },
+        {
+          "year_month": "2021-12",
+          "orders": 206,
+          "monthly_sales": 1318071.55,
+          "monthly_profit": 162320.58
+        },
+        {
+          "year_month": "2022-01",
+          "orders": 221,
+          "monthly_sales": 1373317.34,
+          "monthly_profit": 140918.43
+        },
+        {
+          "year_month": "2022-02",
+          "orders": 187,
+          "monthly_sales": 1142481.97,
+          "monthly_profit": 118209.6
+        },
+        {
+          "year_month": "2022-03",
+          "orders": 229,
+          "monthly_sales": 1486989.39,
+          "monthly_profit": 170436.11
+        },
+        {
+          "year_month": "2022-04",
+          "orders": 186,
+          "monthly_sales": 1215048.32,
+          "monthly_profit": 148011.22
+        },
+        {
+          "year_month": "2022-05",
+          "orders": 220,
+          "monthly_sales": 1245094.11,
+          "monthly_profit": 144913.76
+        },
+        {
+          "year_month": "2022-06",
+          "orders": 199,
+          "monthly_sales": 1298572.51,
+          "monthly_profit": 191066.56
+        },
+        {
+          "year_month": "2022-07",
+          "orders": 212,
+          "monthly_sales": 1337739.78,
+          "monthly_profit": 175587.08
+        },
+        {
+          "year_month": "2022-08",
+          "orders": 207,
+          "monthly_sales": 1360979.82,
+          "monthly_profit": 195326.41
+        },
+        {
+          "year_month": "2022-09",
+          "orders": 188,
+          "monthly_sales": 1149267.5,
+          "monthly_profit": 108953.68
+        },
+        {
+          "year_month": "2022-10",
+          "orders": 190,
+          "monthly_sales": 1110389.66,
+          "monthly_profit": 151281.8
+        },
+        {
+          "year_month": "2022-11",
+          "orders": 237,
+          "monthly_sales": 1487338.13,
+          "monthly_profit": 152241.37
+        },
+        {
+          "year_month": "2022-12",
+          "orders": 177,
+          "monthly_sales": 1184789.15,
+          "monthly_profit": 172118.09
+        }
+      ]
+    },
+    "yearly": {
+      "columns": [
+        "year",
+        "annual_sales",
+        "annual_profit",
+        "total_orders",
+        "active_customers"
+      ],
+      "data": [
+        {
+          "year": "2019",
+          "annual_sales": 15526726.17,
+          "annual_profit": 1946991.63,
+          "total_orders": 2439,
+          "active_customers": 392
+        },
+        {
+          "year": "2020",
+          "annual_sales": 15227389.21,
+          "annual_profit": 1722735.32,
+          "total_orders": 2427,
+          "active_customers": 392
+        },
+        {
+          "year": "2021",
+          "annual_sales": 15450070.76,
+          "annual_profit": 1800773.53,
+          "total_orders": 2477,
+          "active_customers": 391
+        },
+        {
+          "year": "2022",
+          "annual_sales": 15392007.68,
+          "annual_profit": 1869064.11,
+          "total_orders": 2431,
+          "active_customers": 391
+        }
+      ]
+    },
+    "quarterly": {
+      "columns": [
+        "year",
+        "quarter",
+        "quarterly_sales",
+        "quarterly_profit",
+        "orders"
+      ],
+      "data": [
+        {
+          "year": "2019",
+          "quarter": "Q1",
+          "sales": 3747426.58,
+          "profit": 501833.02
+        },
+        {
+          "year": "2019",
+          "quarter": "Q2",
+          "sales": 3843465.39,
+          "profit": 440725.0
+        },
+        {
+          "year": "2019",
+          "quarter": "Q3",
+          "sales": 4036552.33,
+          "profit": 484597.96
+        },
+        {
+          "year": "2019",
+          "quarter": "Q4",
+          "sales": 3899281.87,
+          "profit": 519835.65
+        },
+        {
+          "year": "2020",
+          "quarter": "Q1",
+          "sales": 3599770.52,
+          "profit": 397843.49
+        },
+        {
+          "year": "2020",
+          "quarter": "Q2",
+          "sales": 3795370.5,
+          "profit": 469852.81
+        },
+        {
+          "year": "2020",
+          "quarter": "Q3",
+          "sales": 3826695.37,
+          "profit": 390303.44
+        },
+        {
+          "year": "2020",
+          "quarter": "Q4",
+          "sales": 4005552.82,
+          "profit": 464735.58
+        },
+        {
+          "year": "2021",
+          "quarter": "Q1",
+          "sales": 3657850.76,
+          "profit": 440460.39
+        },
+        {
+          "year": "2021",
+          "quarter": "Q2",
+          "sales": 3919951.21,
+          "profit": 491164.87
+        },
+        {
+          "year": "2021",
+          "quarter": "Q3",
+          "sales": 3952128.73,
+          "profit": 407141.4
+        },
+        {
+          "year": "2021",
+          "quarter": "Q4",
+          "sales": 3920140.06,
+          "profit": 462006.87
+        },
+        {
+          "year": "2022",
+          "quarter": "Q1",
+          "sales": 4002788.7,
+          "profit": 429564.14
+        },
+        {
+          "year": "2022",
+          "quarter": "Q2",
+          "sales": 3758714.94,
+          "profit": 483991.54
+        },
+        {
+          "year": "2022",
+          "quarter": "Q3",
+          "sales": 3847987.1,
+          "profit": 479867.17
+        },
+        {
+          "year": "2022",
+          "quarter": "Q4",
+          "sales": 3782516.94,
+          "profit": 475641.26
+        }
+      ]
+    }
+  },
+  "top_customers": {
+    "top20_by_sales": {
+      "columns": [
+        "Customer_Name",
+        "Segment",
+        "Region",
+        "total_orders",
+        "total_sales",
+        "total_profit",
+        "avg_order_value"
+      ],
+      "data": [
+        {
+          "Customer_Name": "Jessica Miller",
+          "Segment": "Consumer",
+          "Region": "South",
+          "total_orders": 8,
+          "total_sales": 90642.07,
+          "total_profit": 5767.61,
+          "avg_order_value": 11330.26
+        },
+        {
+          "Customer_Name": "Karen Johnson",
+          "Segment": "Home Office",
+          "Region": "South",
+          "total_orders": 5,
+          "total_sales": 87072.13,
+          "total_profit": 21499.46,
+          "avg_order_value": 17414.43
+        },
+        {
+          "Customer_Name": "Charles Martinez",
+          "Segment": "Corporate",
+          "Region": "East",
+          "total_orders": 5,
+          "total_sales": 75158.96,
+          "total_profit": 6997.21,
+          "avg_order_value": 15031.79
+        },
+        {
+          "Customer_Name": "Patricia Davis",
+          "Segment": "Home Office",
+          "Region": "Central",
+          "total_orders": 6,
+          "total_sales": 73127.4,
+          "total_profit": -400.32,
+          "avg_order_value": 12187.9
+        },
+        {
+          "Customer_Name": "Charles Anderson",
+          "Segment": "Corporate",
+          "Region": "West",
+          "total_orders": 8,
+          "total_sales": 72050.68,
+          "total_profit": 7974.91,
+          "avg_order_value": 9006.34
+        },
+        {
+          "Customer_Name": "Linda Anderson",
+          "Segment": "Consumer",
+          "Region": "West",
+          "total_orders": 6,
+          "total_sales": 69635.02,
+          "total_profit": 5383.71,
+          "avg_order_value": 11605.84
+        },
+        {
+          "Customer_Name": "Sarah King",
+          "Segment": "Consumer",
+          "Region": "South",
+          "total_orders": 6,
+          "total_sales": 67122.31,
+          "total_profit": 8323.28,
+          "avg_order_value": 11187.05
+        },
+        {
+          "Customer_Name": "John Martin",
+          "Segment": "Consumer",
+          "Region": "Central",
+          "total_orders": 4,
+          "total_sales": 65661.03,
+          "total_profit": 5115.88,
+          "avg_order_value": 16415.26
+        },
+        {
+          "Customer_Name": "Jessica Garcia",
+          "Segment": "Consumer",
+          "Region": "East",
+          "total_orders": 7,
+          "total_sales": 61655.18,
+          "total_profit": 6782.55,
+          "avg_order_value": 8807.88
+        },
+        {
+          "Customer_Name": "Lisa Jackson",
+          "Segment": "Home Office",
+          "Region": "South",
+          "total_orders": 5,
+          "total_sales": 60603.97,
+          "total_profit": 861.08,
+          "avg_order_value": 12120.79
+        },
+        {
+          "Customer_Name": "Michael Jackson",
+          "Segment": "Consumer",
+          "Region": "Central",
+          "total_orders": 7,
+          "total_sales": 60431.58,
+          "total_profit": 8915.39,
+          "avg_order_value": 8633.08
+        },
+        {
+          "Customer_Name": "Sarah Miller",
+          "Segment": "Home Office",
+          "Region": "South",
+          "total_orders": 8,
+          "total_sales": 60273.62,
+          "total_profit": 11994.13,
+          "avg_order_value": 7534.2
+        },
+        {
+          "Customer_Name": "Karen Thomas",
+          "Segment": "Consumer",
+          "Region": "West",
+          "total_orders": 6,
+          "total_sales": 60201.04,
+          "total_profit": 9946.45,
+          "avg_order_value": 10033.51
+        },
+        {
+          "Customer_Name": "Joseph Wilson",
+          "Segment": "Consumer",
+          "Region": "Central",
+          "total_orders": 4,
+          "total_sales": 60076.51,
+          "total_profit": 9991.12,
+          "avg_order_value": 15019.13
+        },
+        {
+          "Customer_Name": "Mary Thompson",
+          "Segment": "Consumer",
+          "Region": "South",
+          "total_orders": 6,
+          "total_sales": 59452.04,
+          "total_profit": 8608.5,
+          "avg_order_value": 9908.67
+        },
+        {
+          "Customer_Name": "Karen King",
+          "Segment": "Corporate",
+          "Region": "Central",
+          "total_orders": 3,
+          "total_sales": 58852.35,
+          "total_profit": 2458.8,
+          "avg_order_value": 19617.45
+        },
+        {
+          "Customer_Name": "Sarah Garcia",
+          "Segment": "Consumer",
+          "Region": "Central",
+          "total_orders": 7,
+          "total_sales": 58737.81,
+          "total_profit": -5453.27,
+          "avg_order_value": 8391.12
+        },
+        {
+          "Customer_Name": "Robert Miller",
+          "Segment": "Consumer",
+          "Region": "East",
+          "total_orders": 7,
+          "total_sales": 58571.09,
+          "total_profit": 5066.04,
+          "avg_order_value": 8367.3
+        },
+        {
+          "Customer_Name": "Linda Johnson",
+          "Segment": "Home Office",
+          "Region": "West",
+          "total_orders": 6,
+          "total_sales": 58369.88,
+          "total_profit": 10636.9,
+          "avg_order_value": 9728.31
+        },
+        {
+          "Customer_Name": "Sarah Taylor",
+          "Segment": "Home Office",
+          "Region": "Central",
+          "total_orders": 6,
+          "total_sales": 58160.8,
+          "total_profit": 2634.1,
+          "avg_order_value": 9693.47
+        }
+      ]
+    },
+    "customer_segments": {
+      "columns": [
+        "buyer_segment",
+        "customers",
+        "avg_spend",
+        "segment_revenue"
+      ],
+      "data": [
+        {
+          "buyer_segment": "Loyal (7+)",
+          "customers": 392,
+          "avg_spend": 157133.15,
+          "segment_revenue": 61596193.82
+        }
+      ]
+    }
+  },
+  "validation": {
+    "null_check": {
+      "columns": [
+        "null_customers",
+        "null_orders",
+        "invalid_sales",
+        "invalid_qty",
+        "null_regions"
+      ],
+      "data": [
+        {
+          "null_customers": 0,
+          "null_orders": 0,
+          "invalid_sales": 0,
+          "invalid_qty": 0,
+          "null_regions": 0
+        }
+      ]
+    },
+    "duplicates": {
+      "columns": [
+        "Order_ID",
+        "Product_ID",
+        "cnt"
+      ],
+      "data": []
+    },
+    "shipping_validity": {
+      "columns": [
+        "invalid_ship"
+      ],
+      "data": [
+        {
+          "invalid_ship": 0
+        }
+      ]
+    },
+    "discount_validity": {
+      "columns": [
+        "min_disc",
+        "max_disc",
+        "invalid_discounts"
+      ],
+      "data": [
+        {
+          "min_disc": 0.0,
+          "max_disc": 0.5,
+          "invalid_discounts": 0
+        }
+      ]
+    }
+  },
+  "discount_analysis": {
+    "discount_impact": {
+      "columns": [
+        "discount_range",
+        "num_transactions",
+        "total_sales",
+        "total_profit",
+        "margin_pct"
+      ],
+      "data": [
+        {
+          "discount_range": "0% No Discount",
+          "num_transactions": 3740,
+          "total_sales": 28393365.05,
+          "total_profit": 3371096.15,
+          "margin_pct": 11.87
+        },
+        {
+          "discount_range": "1-10%",
+          "num_transactions": 1218,
+          "total_sales": 8241596.64,
+          "total_profit": 926438.32,
+          "margin_pct": 11.24
+        },
+        {
+          "discount_range": "11-20%",
+          "num_transactions": 1305,
+          "total_sales": 7985580.75,
+          "total_profit": 975103.82,
+          "margin_pct": 12.21
+        },
+        {
+          "discount_range": "21-30%",
+          "num_transactions": 1230,
+          "total_sales": 6558998.36,
+          "total_profit": 777401.74,
+          "margin_pct": 11.85
+        },
+        {
+          "discount_range": "31-40%",
+          "num_transactions": 1251,
+          "total_sales": 5775487.56,
+          "total_profit": 726183.79,
+          "margin_pct": 12.57
+        },
+        {
+          "discount_range": "41%+",
+          "num_transactions": 1250,
+          "total_sales": 4641165.46,
+          "total_profit": 563340.77,
+          "margin_pct": 12.14
+        }
+      ]
+    }
+  },
+  "shipping": {
+    "by_ship_mode": {
+      "columns": [
+        "Ship_Mode",
+        "orders",
+        "avg_days",
+        "total_sales"
+      ],
+      "data": [
+        {
+          "Ship_Mode": "Standard Class",
+          "orders": 2451,
+          "avg_days": 3.97,
+          "total_sales": 15342171.88
+        },
+        {
+          "Ship_Mode": "Same Day",
+          "orders": 2481,
+          "avg_days": 3.98,
+          "total_sales": 15580726.5
+        },
+        {
+          "Ship_Mode": "Second Class",
+          "orders": 2483,
+          "avg_days": 4.01,
+          "total_sales": 15537540.52
+        },
+        {
+          "Ship_Mode": "First Class",
+          "orders": 2436,
+          "avg_days": 4.06,
+          "total_sales": 15135754.92
+        }
+      ]
+    }
+  },
+  "seasonal": {
+    "monthly_avg": {
+      "columns": [
+        "month_num",
+        "month_name",
+        "avg_monthly_sales",
+        "total"
+      ],
+      "data": [
+        {
+          "month_num": "01",
+          "month_name": "January",
+          "avg_monthly_sales": 1322189.65,
+          "total": 5288758.58
+        },
+        {
+          "month_num": "02",
+          "month_name": "February",
+          "avg_monthly_sales": 1163741.91,
+          "total": 4654967.63
+        },
+        {
+          "month_num": "03",
+          "month_name": "March",
+          "avg_monthly_sales": 1266027.59,
+          "total": 5064110.35
+        },
+        {
+          "month_num": "04",
+          "month_name": "April",
+          "avg_monthly_sales": 1254424.6,
+          "total": 5017698.39
+        },
+        {
+          "month_num": "05",
+          "month_name": "May",
+          "avg_monthly_sales": 1309343.79,
+          "total": 5237375.14
+        },
+        {
+          "month_num": "06",
+          "month_name": "June",
+          "avg_monthly_sales": 1265607.13,
+          "total": 5062428.51
+        },
+        {
+          "month_num": "07",
+          "month_name": "July",
+          "avg_monthly_sales": 1320200.98,
+          "total": 5280803.9
+        },
+        {
+          "month_num": "08",
+          "month_name": "August",
+          "avg_monthly_sales": 1343660.09,
+          "total": 5374640.36
+        },
+        {
+          "month_num": "09",
+          "month_name": "September",
+          "avg_monthly_sales": 1251979.82,
+          "total": 5007919.27
+        },
+        {
+          "month_num": "10",
+          "month_name": "October",
+          "avg_monthly_sales": 1268648.16,
+          "total": 5074592.62
+        },
+        {
+          "month_num": "11",
+          "month_name": "November",
+          "avg_monthly_sales": 1367605.65,
+          "total": 5470422.58
+        },
+        {
+          "month_num": "12",
+          "month_name": "December",
+          "avg_monthly_sales": 1265619.12,
+          "total": 5062476.49
+        }
+      ]
+    }
+  }
+}

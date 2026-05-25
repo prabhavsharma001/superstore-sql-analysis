@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+*_executed.ipynb
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data (optional — comment out if you want to include in repo)
+# data/superstore.db
+
+# IDE
+.vscode/
+.idea/
